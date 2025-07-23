@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" th:href="@{/css/todos.css}">
+        <script>
+            function openDialog(todoId) {
+                const deleteLink = document.getElementById("confirm_dialog_link");
+                deleteLink.href = `/todo/delete?todoId=${todoId}`;
+                document.getElementById("delete_dialog").showModal();
+            }
+            
+            function closeDialog() {
+                document.getElementById("delete_dialog").close();
+            }
+        </script>
+    </head>
+    <body>
+        <form class="filters-form" action="" method="get">
+            <div class="input">
+                <label for="title-input">Title:</label>
+                <input id="title-input" type="text" name="title" placeholder="Search by title..." th:value="${title}"/>
+            </div>
+            
+            <div class="input">
+                <label for="username-input">Username:</label>
+                <input id="username-input" type="text" name="username" placeholder="Search by username..."
+                       th:value="${username}"/>
+            </div>
+            
+            <button id="search_button" type="submit">Search</button>
+        </form>
+        
+        <table class="content">
+            <tr>
+                <th class="operation_column">
+                    <a th:href="@{/edition}" class="operation_btn">+</a>
+                </th>
+                <th>
+                    <a th:href="@{/(title=${title}, username=${username}, page=${page}, sortField='title', sortDirection=${sortField == 'title' ? reverseSortDirection : 'asc'})}">
+                        Title<span th:text="${sortField == 'title' ? (sortDirection == 'asc' ? ascSymbol : descSymbol) : ''}"></span>
+                    </a>
+                </th>
+                <th>
+                    <a th:href="@{/(title=${title}, username=${username}, page=${page}, sortField='user.username', sortDirection=${sortField == 'user.username' ? reverseSortDirection : 'asc'})}">
+                        Username<span th:text="${sortField == 'user.username' ? (sortDirection == 'asc' ? ascSymbol : descSymbol) : ''}"></span>
+                    </a>
+                </th>
+                <th>
+                    <a th:href="@{/(title=${title}, username=${username}, page=${page}, sortField='user.address.country', sortDirection=${sortField == 'user.address.country' ? reverseSortDirection : 'asc'})}">
+                        Country<span th:text="${sortField == 'user.address.country' ? (sortDirection == 'asc' ? ascSymbol : descSymbol) : ''}"></span>
+                    </a>
+                </th>
+                <th>
+                    <a th:href="@{/(title=${title}, username=${username}, page=${page}, sortField='completed', sortDirection=${sortField == 'completed' ? reverseSortDirection : 'asc'})}">
+                        Completed<span th:text="${sortField == 'completed' ? (sortDirection == 'asc' ? ascSymbol : descSymbol) : ''}"></span>
+                    </a>
+                </th>
+            </tr>
+            <tr th:each="todo: ${todos}">
+                <td class="operation_column">
+                    <a th:href="@{/edition(todoId=${todo.id})}"  class="operation_btn">!</a>
+                    <button id="delete_button" type="button" th:attr="onclick=|openDialog('${todo.id}')|">x</button>
+                </td>
+                <td th:text="${todo.title}" class="title-cell"></td>
+                <td th:text="${todo.user.username}"></td>
+                <td th:text="${todo.user.address.country}"></td>
+                <td>
+                    <input type="checkbox" th:checked="${todo.completed}" disabled>
+                </td>
+            </tr>
+        </table>
+        
+        <table class="pagination">
+            <tr>
+                <th>
+                    <a th:if="${page != 1}"
+                       th:href="@{/(title=${title}, username=${username}, page=${page - 1}, sortField=${sortField}, sortDirection=${sortDirection})}">&lt;</a>
+                </th>
+                <th th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:href="@{/(title=${title}, username=${username}, page=${i}, sortField=${sortField}, sortDirection=${sortDirection})}" th:text="${i}"></a>
+                </th>
+                <th>
+                    <a th:if="${page != totalPages}"
+                       th:href="@{/(title=${title}, username=${username}, page=${page + 1}, sortField=${sortField}, sortDirection=${sortDirection})}">&gt;</a>
+                </th>
+            </tr>
+        </table>
+        
+        <dialog id="delete_dialog">
+            <p>Are you sure?</p>
+            <button><a id="confirm_dialog_link" class="button_link">Yes</a></button>
+            <button id="no_button" onclick="closeDialog()">No</button>
+        </dialog>
+    </body>
+</html>

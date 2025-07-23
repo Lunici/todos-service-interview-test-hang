@@ -1,0 +1,72 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+    font-size: 22px;
+}
+
+.content, .content th, .content td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.content {
+    width: 50vw;
+}
+
+.content th, .content td {
+    padding: 5px;
+    text-align: center;
+}
+
+.filters-form {
+    display: flex;
+    margin-bottom: 20px;
+    width: 50vw;
+    gap: 10px;
+}
+
+.filters-form > .input {
+    display: flex;
+    flex: 2;
+    flex-direction: column;
+}
+
+.filters-form > button {
+    flex: 1;
+}
+
+button {
+    border: none;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+.button_link {
+    text-decoration: none;
+    border: none;
+    background-color: #2d2d2d;
+    color: white;
+}
+
+#add_button #edit_button #delete_button {
+
+}
+
+.operation_btn {
+    display: inline-block;
+    background-color: #2d2d2d;
+    color: white;
+    text-decoration: none;
+    width: 28px;
+    height: 28px;
+}
+
+.title-cell {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

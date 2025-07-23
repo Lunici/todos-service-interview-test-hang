@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" th:href="@{/css/edition.css}">
+    </head>
+    <body>
+        <div th:each="error : ${errors}" th:text="${error}" class="error"></div>
+        <form action="/save" method="get" th:object="${todoForm}">
+            <input type="hidden" th:field="*{id}">
+            <div class="input">
+                <label for="user-input">User:</label>
+                <select id="user-input" th:field="*{userId}">
+                    <option value="0" selected>Select a user...</option>
+                    <option th:each="user : ${allUsers}" th:value="${user.id}" th:text="${user.username}"></option>
+                </select>
+            </div>
+            
+            <div class="input">
+                <label for="title-input">Title:</label>
+                <input id="title-input" type="text" name="title" th:field="*{title}"/>
+            </div>
+            
+            <div>
+                <label for="completed-input">Completed:</label>
+                <input id="completed-input" type="checkbox" th:field="*{completed}"/>
+            </div>
+            
+            <div>
+                <button type="submit">Save</button>
+            </div>
+        </form>
+
+    </body>
+</html>
