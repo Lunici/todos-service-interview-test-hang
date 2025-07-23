@@ -18,4 +18,8 @@ public class UserService {
     public List<UserEntity> findAll() {
         return userRepository.findAll();
     }
+
+    public UserEntity findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
 }

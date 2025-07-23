@@ -1,9 +1,11 @@
 package cat.ohmycode.pruebatecnicahangxing.controller;
 
-import cat.ohmycode.pruebatecnicahangxing.entity.TodoEntity;
 import cat.ohmycode.pruebatecnicahangxing.form.TodoForm;
 import cat.ohmycode.pruebatecnicahangxing.service.TodoService;
 import cat.ohmycode.pruebatecnicahangxing.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,11 +29,13 @@ public class EditionController {
     }
 
     @GetMapping("/edition")
+    @PreAuthorize("@todoService.isOwner(#todoId, authentication.name)")
     public String edition(@RequestParam(required = false) Integer todoId, Model model) {
         TodoForm todoForm = todoId == null ? new TodoForm() : todoService.findFormById(todoId);
         if (todoForm == null) {
             todoForm = new TodoForm();
         }
+
         model.addAttribute("todoForm", todoForm);
         model.addAttribute("allUsers", userService.findAll());
         model.addAttribute("errors", Collections.emptyList());

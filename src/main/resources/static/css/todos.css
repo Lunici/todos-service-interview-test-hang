@@ -1,11 +1,4 @@
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20vh;
-    font-size: 22px;
-}
+@import "global.css";
 
 .content, .content th, .content td{
     border: 1px solid black;

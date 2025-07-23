@@ -45,4 +45,16 @@ public class TodoService {
     public void deleteById(final Integer id) {
         todoRepository.deleteById(id);
     }
+
+    public boolean isOwner(final Integer todoId, String username) {
+        if (todoId == null) {
+            return true;
+        }
+
+        final TodoEntity todo = findById(todoId);
+        if (todo == null) {
+            return false;
+        }
+        return todo.getUser().getUsername().equals(username);
+    }
 }
