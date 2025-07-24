@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="03-fake-datas" author="hang.xing">
+        <sql>
+            insert into "user" (name, username, password, street, city, zipcode, country) values ('Hang Xing', 'hang', 'admin', 'unio', 'girona', '08080', 'spain');
+            insert into "user" (name, username, password, street, city, zipcode, country) values ('Administrator', 'admin', 'admin', 'gracia', 'barcelona', '07070', 'spain');
+            insert into "user" (name, username, password, street, city, zipcode, country) values ('Steve Jobs', 'steve', 'admin', 'travessera', 'madrid', '06060', 'spain');
+        </sql>
+        <sql>
+            insert into todo (title, completed, user_id) values ('eat breakfast', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('play football', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('turn on light', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('clean cache', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('open door', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('change backgroud', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('speak english', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('connect database', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('play cards', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('drive car', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('turn off light', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('play games', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('restart server', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('open terminal', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('return value', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('clear console', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('show skills', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('climb mountain', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('remove element', false, (select u.id from "user" u where username like 'hang'));
+            insert into todo (title, completed, user_id) values ('copy examen', false, (select u.id from "user" u where username like 'hang'));
+
+            insert into todo (title, completed, user_id) values ('do tests', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('watch movie', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('swim', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('give likes', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('create project', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('delete project', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('remove project', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('open project', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('stop server', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('stop node', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('cut lines', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('renew ip', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('search names', false, (select u.id from "user" u where username like 'admin'));
+            insert into todo (title, completed, user_id) values ('eat dinner', false, (select u.id from "user" u where username like 'admin'));
+
+            insert into todo (title, completed, user_id) values ('define concept', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('solve problem', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('reduce cost', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('write code', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('train model', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('design logo', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('make decision', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('read book', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('clean room', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('share idea', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('ask question', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('cook dinner', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('edit video', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('buy computer', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('think', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('run', false, (select u.id from "user" u where username like 'steve'));
+            insert into todo (title, completed, user_id) values ('debug', false, (select u.id from "user" u where username like 'steve'));
+
+        </sql>
+    </changeSet>
+</databaseChangeLog>

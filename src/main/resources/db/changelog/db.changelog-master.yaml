@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/01-create-table-user.xml
   - include:
       file: db/changelog/02-create-table-todo.xml
+  - include:
+      file: db/changelog/03-fake-datas.xml
